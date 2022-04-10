@@ -1,0 +1,16 @@
+{
+	"name": "dell/php-eng_words",
+	"type": "project",
+	"license": "MIT",
+	"autoload": {
+		"psr-4": {
+			"App\\": "src/"
+		}
+	},
+	"authors": [
+		{
+			"name": "CubeStorm",
+			"email": "marcin.witas72@gmail.com"
+		}
+	]
+}
