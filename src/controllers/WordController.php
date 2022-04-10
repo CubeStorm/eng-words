@@ -25,7 +25,7 @@ class WordController
             
             Chat::send('showWord', $randomWord['name']);
             
-            $userAnswer = readline();
+            $userAnswer = Chat::input('Answer: ');
             $translation = json_decode($randomWord['translation']);
 
             $translationIsArray = is_array($translation);
@@ -46,8 +46,8 @@ class WordController
 
     public function store(): void
     {
-        $name = readline('Name (English): ');
-        $translation = readline('Translation: ');
+        $name = Chat::input('Name (English): ');
+        $translation = Chat::input('Translation: ');
         
         if (str_contains($translation, ',')) {
             $translation = explode(',', $translation);
@@ -68,7 +68,7 @@ class WordController
 
         Chat::send('allWords', $words);
 
-        $selectedWordsNumbers = readline('Select word(s) to remove: ');
+        $selectedWordsNumbers = Chat::input('Select word(s) to remove: ');
         $selectedWordsNumbers = explode(',', $selectedWordsNumbers);
         $selectedWordsNumbers = array_map('trim', $selectedWordsNumbers);
 

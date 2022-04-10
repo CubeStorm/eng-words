@@ -6,6 +6,10 @@ namespace App\Utils;
 
 class Chat
 {
+    public static function input(string $message = ''): string {
+        return readline("\033[36m$message\033[0m");
+    }
+
     public static function send(string $type, mixed $arg = ''): void
     {
         $chat = new self();
@@ -42,8 +46,8 @@ class Chat
 
     private function showWord(string $word): void
     {
+        Message::color('info', '');
         Message::color('warning', "Drew word: $word");
-        Message::color('warning', 'Your translation: ');
     }
 
     private function correctAnswer(): void
@@ -57,7 +61,6 @@ class Chat
     {
         Message::color('info', '');
         Message::color('error', "Bad! Correct answer: $correctAnswer");
-        Message::color('info', '');
     }
 
     private function allWords(array $words): void

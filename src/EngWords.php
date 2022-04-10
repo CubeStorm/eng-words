@@ -27,9 +27,9 @@ class EngWords
     {
         Chat::send('welcome');
         
-        $input = readline();
+        $option = Chat::input();
 
-        match($input) {
+        match($option) {
             default => $this->wordController->index(),
             // "1" => $this->wordController->index(),
             "2" => $this->wordController->store(),
