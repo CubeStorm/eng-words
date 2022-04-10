@@ -13,13 +13,14 @@ class WordController
         private Queries $queries
     ) { }
 
-    public function index()
+    public function index(): void
     {
         while (true) {
             $randomWord = $this->queries->getRandomWord();
 
             if (!$randomWord) {
-                return Chat::send('emptyDatabase');
+                Chat::send('emptyDatabase');
+                return;
             }
             
             Chat::send('showWord', $randomWord['name']);
@@ -43,16 +44,42 @@ class WordController
         }
     }
 
-    public function store()
+    public function store(): void
     {
         $name = readline('Name (English): ');
         $translation = readline('Translation: ');
-
+        
         if (str_contains($translation, ',')) {
             $translation = explode(',', $translation);
             $translation = array_map('trim', $translation);
         }
-
+        
         $this->queries->storeWord($name, $translation);
+    }
+
+    public function remove(): void
+    {
+        $words = $this->queries->getWords();
+
+        if (!$words) {
+            Chat::send('emptyDatabase');
+            return;
+        }
+
+        Chat::send('allWords', $words);
+
+        $selectedWordsNumbers = readline('Select word(s) to remove: ');
+        $selectedWordsNumbers = explode(',', $selectedWordsNumbers);
+        $selectedWordsNumbers = array_map('trim', $selectedWordsNumbers);
+
+        $wordsIdsToDelete = [];
+
+        foreach ($selectedWordsNumbers as $wordNumber) {
+            $wordsIdsToDelete[] = $words[(int) $wordNumber - 1]['id'];
+        }
+
+        $this->queries->removeWords($wordsIdsToDelete);
+
+        Chat::send('wordsRemoved');
     }
 }

@@ -40,6 +40,13 @@ class Queries
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getWords(): mixed
+    {
+        $statement = $this->connection->query('SELECT * FROM words');
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function storeWord(string $name, string | array $translation): void
     {
         $translation = json_encode($translation);
@@ -51,6 +58,21 @@ class Queries
         
         $statement->bindParam(':name', $name);
         $statement->bindParam(':translation', $translation);
+        $statement->execute();
+    }
+    
+    public function removeWords(array $ids): void
+    {
+        $params = implode(', :', $ids);
+
+        $statement = $this->connection->prepare("
+            DELETE FROM words
+            WHERE id IN(:$params) 
+        ");
+
+        foreach ($ids as $key => &$val) {
+            $statement->bindParam("$val", $val);
+        }
 
         $statement->execute();
     }

@@ -33,7 +33,8 @@ class EngWords
             default => $this->wordController->index(),
             // "1" => $this->wordController->index(),
             "2" => $this->wordController->store(),
-            "3" => exit(),
+            "3" => $this->wordController->remove(),
+            "4" => exit(),
         };
     }
 }
