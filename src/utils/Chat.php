@@ -4,10 +4,22 @@ declare(strict_types=1);
 
 namespace App\Utils;
 
+use App\Validation\Validator;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+
 class Chat
 {
-    public static function input(string $message = ''): string {
-        return readline("\033[36m$message\033[0m");
+    public static function input(Validator $validator, string $label = ''): string {
+        $input = readline("\033[36m$label\033[0m");
+
+        while (!$validator->validate($input)) {
+            Message::color($validator->getMessage(), 'error');
+
+            $input = readline("\033[36m$label\033[0m");
+        }
+
+        return $input;
     }
 
     public static function send(string $type, mixed $arg = ''): void

@@ -6,6 +6,8 @@ namespace App\Controllers;
 
 use App\Database\Queries;
 use App\Utils\Chat;
+use App\Validation\OptionValidator;
+use App\Validation\WordValidator;
 
 class WordController
 {
@@ -25,7 +27,7 @@ class WordController
             
             Chat::send('showWord', $randomWord['name']);
             
-            $userAnswer = Chat::input('Answer: ');
+            $userAnswer = Chat::input(new WordValidator(), 'Answer: ');
             $translation = json_decode($randomWord['translation']);
 
             $translationIsArray = is_array($translation);
@@ -46,8 +48,8 @@ class WordController
 
     public function store(): void
     {
-        $name = Chat::input('Name (English): ');
-        $translation = Chat::input('Translation: ');
+        $name = Chat::input(new WordValidator(), 'Name (English): ');
+        $translation = Chat::input(new WordValidator(), 'Translation: ');
         
         if (str_contains($translation, ',')) {
             $translation = explode(',', $translation);
@@ -68,7 +70,7 @@ class WordController
 
         Chat::send('allWords', $words);
 
-        $selectedWordsNumbers = Chat::input('Select word(s) to remove: ');
+        $selectedWordsNumbers = Chat::input(new OptionValidator(1, count($words)), 'Select word(s) to remove: ');
         $selectedWordsNumbers = explode(',', $selectedWordsNumbers);
         $selectedWordsNumbers = array_map('trim', $selectedWordsNumbers);
 

@@ -7,6 +7,7 @@ namespace App;
 use App\Controllers\WordController;
 use App\Database\Queries;
 use App\Utils\Chat;
+use App\Validation\OptionValidator;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -27,7 +28,7 @@ class EngWords
     {
         Chat::send('welcome');
         
-        $option = Chat::input();
+        $option = Chat::input(new OptionValidator(1, 5));
 
         match($option) {
             default => $this->wordController->index(),

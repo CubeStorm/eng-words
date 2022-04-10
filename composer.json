@@ -12,5 +12,8 @@
 			"name": "CubeStorm",
 			"email": "marcin.witas72@gmail.com"
 		}
-	]
+	],
+	"require": {
+		"respect/validation": "^2.2"
+	}
 }
