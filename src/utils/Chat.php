@@ -27,47 +27,47 @@ class Chat
 
     private function welcome(): void
     {
-        Message::color('info', '');
-        Message::color('info', 'Welcome in EngWords!');
-        Message::color('info', '');
-        Message::color('info', 'Navigation:');
-        Message::color('success', '  [1] Draw random word');
-        Message::color('success', '  [2] Add word to game');
-        Message::color('success', '  [3] Remove word from game');
-        Message::color('success', '  [4] Show all words');
-        Message::color('success', '  [5] Exit program (Ctrl + C in game)');
-        Message::color('info', '');
+        Message::color('');
+        Message::color('Welcome in EngWords!');
+        Message::color('');
+        Message::color('Navigation:');
+        Message::color('  [1] Draw random word', 'success');
+        Message::color('  [2] Add word to game', 'success');
+        Message::color('  [3] Remove word from game', 'success');
+        Message::color('  [4] Show all words', 'success');
+        Message::color('  [5] Exit program (Ctrl + C in game)', 'success');
+        Message::color('');
     }
 
     private function emptyDatabase(): void
     {
-        Message::color('error', 'Database is empty, please add some words!');
+        Message::color('Database is empty, please add some words!', 'error');
     }
 
     private function showWord(string $word): void
     {
-        Message::color('info', '');
-        Message::color('warning', "Drew word: $word");
+        Message::color('');
+        Message::color("Drew word: $word", 'warning');
     }
 
     private function correctAnswer(): void
     {
-        Message::color('info', '');
-        Message::color('success', 'Correct! Time to rematch:');
-        Message::color('info', '');
+        Message::color('');
+        Message::color('Correct! Time to rematch', 'success');
+        Message::color('');
     }
 
     private function badAnswer(string $correctAnswer): void
     {
-        Message::color('info', '');
-        Message::color('error', "Bad! Correct answer: $correctAnswer");
+        Message::color('');
+        Message::color("Bad! Correct answer: $correctAnswer", 'error');
     }
 
     private function allWords(array $words): void
     {
         $i = 1;
 
-        Message::color('info', '');
+        Message::color('');
 
         foreach ($words as $word) {
             $translation = json_decode($word['translation']);
@@ -76,17 +76,17 @@ class Chat
                 $translation = implode(', ', $translation);
             }
 
-            Message::color('info', "[$i] $word[name] ($translation)");
+            Message::color("[$i] $word[name] ($translation)");
             $i++;
         }
         
-        Message::color('info', '');
+        Message::color('');
     }
 
     private function wordsRemoved(): void
     {
-        Message::color('info', '');
-        Message::color('success', "Words removed successfully");
-        Message::color('info', '');
+        Message::color('');
+        Message::color("Words removed successfully", 'success');
+        Message::color('');
     }
 }
