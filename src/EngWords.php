@@ -25,14 +25,14 @@ class EngWords
 
     public function init(): void
     {
-        Message::send('info', '');
-        Message::send('info', 'Welcome in EngWords!');
-        Message::send('info', '');
-        Message::send('info', 'Navigation:');
-        Message::send('success', '  [1] Draw random word');
-        Message::send('success', '  [2] Add word to game');
-        Message::send('success', '  [3] Exit program (Ctrl + C in game)');
-        Message::send('info', '');
+        Message::color('info', '');
+        Message::color('info', 'Welcome in EngWords!');
+        Message::color('info', '');
+        Message::color('info', 'Navigation:');
+        Message::color('success', '  [1] Draw random word');
+        Message::color('success', '  [2] Add word to game');
+        Message::color('success', '  [3] Exit program (Ctrl + C in game)');
+        Message::color('info', '');
         
         $input = readline();
 

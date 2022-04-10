@@ -6,7 +6,7 @@ namespace App\Utils;
 
 class Message
 {
-    public static function send(string $type, string $message): void
+    public static function color(string $type, string $message): void
     {
         switch ($type) {
             default:
