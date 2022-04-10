@@ -34,7 +34,8 @@ class EngWords
             // "1" => $this->wordController->index(),
             "2" => $this->wordController->store(),
             "3" => $this->wordController->remove(),
-            "4" => exit(),
+            "4" => $this->wordController->list(),
+            "5" => exit(),
         };
     }
 }

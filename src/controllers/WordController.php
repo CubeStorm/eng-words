@@ -82,4 +82,16 @@ class WordController
 
         Chat::send('wordsRemoved');
     }
+
+    public function list(): void
+    {
+        $words = $this->queries->getWords();
+
+        if (!$words) {
+            Chat::send('emptyDatabase');
+            return;
+        }
+
+        Chat::send('allWords', $words);
+    }
 }

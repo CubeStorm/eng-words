@@ -30,7 +30,8 @@ class Chat
         Message::color('success', '  [1] Draw random word');
         Message::color('success', '  [2] Add word to game');
         Message::color('success', '  [3] Remove word from game');
-        Message::color('success', '  [4] Exit program (Ctrl + C in game)');
+        Message::color('success', '  [4] Show all words');
+        Message::color('success', '  [5] Exit program (Ctrl + C in game)');
         Message::color('info', '');
     }
 
