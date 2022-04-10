@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Database\Queries;
-use App\Utils\Message;
+use App\Utils\Chat;
 
 class WordController
 {
@@ -19,11 +19,10 @@ class WordController
             $randomWord = $this->queries->getRandomWord();
 
             if (!$randomWord) {
-                return Message::color('error', 'Database is empty, please add some words!');
+                return Chat::send('emptyDatabase');
             }
             
-            Message::color('warning', "Word: $randomWord[name]");
-            Message::color('warning', 'Your translation: ');
+            Chat::send('showWord', $randomWord['name']);
             
             $userAnswer = readline();
             $translation = json_decode($randomWord['translation']);
@@ -31,9 +30,7 @@ class WordController
             $translationIsArray = is_array($translation);
             
             if (in_array($userAnswer, $translationIsArray ? $translation : [$translation])) {
-                Message::color('info', '');
-                Message::color('success', 'Correct! Time to rematch:');
-                Message::send('info', '');
+                Chat::send('correctAnswer');
 
                 continue;
             }
@@ -42,9 +39,7 @@ class WordController
                 $translation = implode(', ', $translation);
             }
             
-            Message::color('info', '');
-            Message::color('error', "Bad! Correct answer: $translation");
-            Message::color('info', '');
+            Chat::send('badAnswer', $translation);
         }
     }
 

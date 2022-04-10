@@ -6,7 +6,7 @@ namespace App;
 
 use App\Controllers\WordController;
 use App\Database\Queries;
-use App\Utils\Message;
+use App\Utils\Chat;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -25,14 +25,7 @@ class EngWords
 
     public function init(): void
     {
-        Message::color('info', '');
-        Message::color('info', 'Welcome in EngWords!');
-        Message::color('info', '');
-        Message::color('info', 'Navigation:');
-        Message::color('success', '  [1] Draw random word');
-        Message::color('success', '  [2] Add word to game');
-        Message::color('success', '  [3] Exit program (Ctrl + C in game)');
-        Message::color('info', '');
+        Chat::send('welcome');
         
         $input = readline();
 

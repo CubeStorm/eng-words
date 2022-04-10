@@ -40,8 +40,8 @@ class Database {
 
         try {
             $this->connection = new PDO($dsn, $this->user, $this->password);
-        } catch (PDOException $e) {
-            throw $e;
+        } catch (PDOException $error) {
+            throw $error;
         }
     }
 
