@@ -16,7 +16,13 @@
     </testsuites>
 
     <php>
-        <env name="APP_ENV" value="testing"/>
+        <env name="DB_HOST" value="localhost"/>
+        <env name="DB_PORT" value="3306"/>
+        <!-- <env name="DB_DATABASE" value="engwords"/> -->
+        <env name="DB_DATABASE" value="test_engwords"/>
+        <env name="DB_USERNAME" value="root"/>
+        <env name="DB_PASSWORD" value=""/>
+        <env name="DB_CHARSET" value="UTF8"/>
     </php>
 
 </phpunit>
