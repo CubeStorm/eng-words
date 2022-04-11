@@ -10,36 +10,38 @@ use PDOException;
 class Database {
     private string $host;
     private int $port;
+    private string $database;
+    private string $username;
     private string $password;
-    private string $db;
     private string $charset;
-    private string $user;
 
     private PDO $connection;
 
     public function __construct()
     {
-        $this->host = 'localhost';
-        $this->port = 3306;
-        $this->password = '';
-        $this->db = 'engwords';
-        $this->charset = 'UTF8';
-        $this->user = 'root';
+        $this->host = $_ENV['DB_HOST'];
+        $this->port = (int) $_ENV['DB_PORT'];
+        $this->database = $_ENV['DB_DATABASE'];
+        $this->username = $_ENV['DB_USERNAME'];
+        $this->password = $_ENV['DB_PASSWORD'];
+        $this->charset = $_ENV['DB_CHARSET'];
     }
 
     public function __destruct()
     {
-        if (!$this->connection) return;
+        if (!$this->connection) {
+            return;
+        }
         
         unset($this->connection);
     }
 
     public function connect(): void
     {
-        $dsn = "mysql:host=$this->host;dbname=$this->db;port=$this->port;charset=$this->charset";
+        $dsn = "mysql:host=$this->host;dbname=$this->database;port=$this->port;charset=$this->charset";
 
         try {
-            $this->connection = new PDO($dsn, $this->user, $this->password);
+            $this->connection = new PDO($dsn, $this->username, $this->password);
         } catch (PDOException $error) {
             throw $error;
         }
