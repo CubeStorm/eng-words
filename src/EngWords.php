@@ -7,6 +7,7 @@ namespace App;
 use App\Controllers\WordController;
 use App\Database\Queries;
 use App\Utils\Chat;
+use App\Utils\Message;
 use App\Validation\OptionValidator;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -32,7 +33,6 @@ class EngWords
 
         match($option) {
             default => $this->wordController->index(),
-            // "1" => $this->wordController->index(),
             "2" => $this->wordController->store(),
             "3" => $this->wordController->remove(),
             "4" => $this->wordController->list(),

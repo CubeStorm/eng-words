@@ -1,5 +1,5 @@
 {
-	"name": "dell/php-eng_words",
+	"name": "cubestorm/engwords",
 	"type": "project",
 	"license": "MIT",
 	"autoload": {
