@@ -36,8 +36,9 @@ class Queries
     public function getRandomWord(): mixed
     {
         $statement = $this->connection->query('SELECT * FROM words ORDER BY RAND() LIMIT 1');
-
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $data[0];
     }
 
     public function getAllWords(): mixed
