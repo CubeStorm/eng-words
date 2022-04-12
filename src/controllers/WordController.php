@@ -61,7 +61,7 @@ class WordController
 
     public function remove(): void
     {
-        $words = $this->queries->getWords();
+        $words = $this->queries->getAllWords();
 
         if (!$words) {
             Chat::send('emptyDatabase');
@@ -87,7 +87,7 @@ class WordController
 
     public function list(): void
     {
-        $words = $this->queries->getWords();
+        $words = $this->queries->getAllWords();
 
         if (!$words) {
             Chat::send('emptyDatabase');

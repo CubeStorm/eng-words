@@ -37,10 +37,10 @@ class Queries
     {
         $statement = $this->connection->query('SELECT * FROM words ORDER BY RAND() LIMIT 1');
 
-        return $statement->fetch(PDO::FETCH_ASSOC);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getWords(): mixed
+    public function getAllWords(): mixed
     {
         $statement = $this->connection->query('SELECT * FROM words');
 
@@ -49,6 +49,10 @@ class Queries
 
     public function storeWord(string $name, string | array $translation): void
     {
+        if (is_array($translation) && empty($translation)) {
+            return;
+        }
+        
         $translation = json_encode($translation);
 
         $statement = $this->connection->prepare("

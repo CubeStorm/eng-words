@@ -7,7 +7,6 @@ namespace App;
 use App\Controllers\WordController;
 use App\Database\Queries;
 use App\Utils\Chat;
-use App\Utils\Message;
 use App\Validation\OptionValidator;
 
 require_once __DIR__ . '/../vendor/autoload.php';
