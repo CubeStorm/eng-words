@@ -27,25 +27,33 @@ Simple PHP console-app for learning english words
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/CubeStorm/eng-words
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd eng-words
 ```
 
 Install dependencies
 
 ```bash
-  npm install
+  composer install
 ```
 
-Start the server
+Create .env file
+
+Copy .env.example content and paste to .env file
+
+Use there your own database settings
+
+Create database in mysql named "engwords'
+
+Run app
 
 ```bash
-  npm run start
+  php index.php
 ```
 
 ## Running Tests
