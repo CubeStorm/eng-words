@@ -58,6 +58,8 @@ Run app
 
 ## Running Tests
 
+Before you run tests you should create separate database named "test_engwords".
+
 To run tests, run the following command
 
 ```bash
